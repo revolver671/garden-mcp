@@ -1,0 +1,60 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "the-garden-mcp",
+	"main": "src/index.ts",
+	"compatibility_date": "2025-04-01",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"r2_buckets": [
+		{
+			"binding": "GARDEN_BUCKET",
+			"bucket_name": "the-garden"
+		}
+	],
+	"durable_objects": {
+		"bindings": [
+			{
+				"name": "LEASE",
+				"class_name": "LeaseDO"
+			}
+		]
+	},
+	"migrations": [
+		{
+			"tag": "v1-lease",
+			"new_sqlite_classes": ["LeaseDO"]
+		}
+	],
+	"d1_databases": [
+		{
+			"binding": "KWINDEX",
+			"database_name": "garden-index",
+			"database_id": "<your-d1-database-id>",
+			"migrations_dir": "migrations"
+		}
+	],
+	"kv_namespaces": [
+		{
+			"binding": "OAUTH_KV",
+			"id": "<your-kv-namespace-id>"
+		}
+	],
+	"triggers": {
+		"crons": [
+			"0 15 * * *",
+			"30 15 * * *",
+			"0 17 * * 6"
+		]
+	},
+	"vectorize": [
+		{
+			"binding": "VECTORIZE",
+			"index_name": "garden-memory-vectors",
+			"remote": true
+		}
+	],
+	"ai": {
+		"binding": "AI"
+	}
+}

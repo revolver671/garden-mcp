@@ -1,0 +1,12 @@
+node_modules/
+.wrangler/
+dist/
+_tmp_newverbs/
+_backup_*/
+withings-tokens.json
+*.log
+.dev.vars
+.env
+
+scripts/garmin_tokens.json
+garden/system/garmin-tokens.json
